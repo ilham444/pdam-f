@@ -51,7 +51,7 @@ const HeatmapComponent = () => {
 
     // JSX return juga tidak berubah
    return (
-  <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+  <div style={{ position: 'relative', width: '100%', height: '100%', zIndex: 0 }}>
     {/* Kotak Statistik Peta bisa ditempatkan di sini */}
     <MapContainer
       style={{ width: '100%', height: '500px' }} // ✅ kasih tinggi supaya peta kelihatan

@@ -5,7 +5,6 @@ import { useParams, Link } from 'react-router-dom';
 import api from '../api';
 import Navbar from '../components/Navbar';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
-import './DetailPelanggan.css';
 
 const DetailPelanggan = () => {
     const { id } = useParams();
@@ -80,7 +79,7 @@ const DetailPelanggan = () => {
 
     return (
         // --- PERBAIKAN STRUKTUR LAYOUT ---
-        <div className="bg-gray-100 min-h-screen">
+        <div className="bg-gray-100 min-h-screen pt-32">
             <Navbar />
             <main className="pt-32 px-4 sm:px-8 pb-8">
                 <div className="flex justify-between items-center mb-6">
@@ -90,62 +89,62 @@ const DetailPelanggan = () => {
                     </Link>
                 </div>
                 
-                <div className="detail-container">
-                    <div className="detail-grid">
+                <div className="bg-white p-8 rounded-xl shadow-md">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-                        <div className="info-column">
-                            <div className="info-block">
-                                <h3 className="info-label">ID Pelanggan</h3>
-                                <p className="info-value id">{pelanggan.id_pelanggan}</p>
+                        <div className="flex flex-col gap-6">
+                            <div className="border-b border-gray-200 pb-4">
+                                <h3 className="text-sm font-semibold text-gray-500 mb-1">ID Pelanggan</h3>
+                                <p className="text-lg text-blue-600 font-bold">{pelanggan.id_pelanggan}</p>
                             </div>
-                            <div className="info-block">
-                                <h3 className="info-label">Nama Pelanggan</h3>
-                                <p className="info-value">{pelanggan.nama_pelanggan}</p>
+                            <div className="border-b border-gray-200 pb-4">
+                                <h3 className="text-sm font-semibold text-gray-500 mb-1">Nama Pelanggan</h3>
+                                <p className="text-lg text-gray-800">{pelanggan.nama_pelanggan}</p>
                             </div>
-                            <div className="info-block">
-                                <h3 className="info-label">Alamat</h3>
-                                <p className="info-value">{pelanggan.alamat}</p>
+                            <div className="border-b border-gray-200 pb-4">
+                                <h3 className="text-sm font-semibold text-gray-500 mb-1">Alamat</h3>
+                                <p className="text-lg text-gray-800">{pelanggan.alamat}</p>
                             </div>
-                            <div className="info-block">
-                                <h3 className="info-label">No. Telepon</h3>
-                                <p className="info-value">{pelanggan.no_telpon || '-'}</p>
+                            <div className="border-b border-gray-200 pb-4">
+                                <h3 className="text-sm font-semibold text-gray-500 mb-1">No. Telepon</h3>
+                                <p className="text-lg text-gray-800">{pelanggan.no_telpon || '-'}</p>
                             </div>
-                            <div className="info-block">
-                                <h3 className="info-label">Status</h3>
-                                <span className={`status-badge ${pelanggan.status === 'Aktif' ? 'status-aktif' : 'status-tidak-aktif'}`}>
+                            <div className="border-b border-gray-200 pb-4">
+                                <h3 className="text-sm font-semibold text-gray-500 mb-1">Status</h3>
+                                <span className={`inline-block px-3 py-1 text-sm font-semibold rounded-full ${pelanggan.status === 'Aktif' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
                                     {pelanggan.status || 'N/A'}
                                 </span>
                             </div>
                         </div>
 
-                        <div className="media-column">
+                        <div className="flex flex-col gap-6">
                              <div>
-                                <h3 className="info-label mb-2">Lokasi di Peta</h3>
+                                <h3 className="text-sm font-semibold text-gray-500 mb-2">Lokasi di Peta</h3>
                                 {position ? (
-                                    <div className="map-wrapper">
-                                        <MapContainer center={position} zoom={16} style={{ height: '100%', width: '100%' }} scrollWheelZoom={false}>
+                                    <div className="h-72 w-full rounded-lg overflow-hidden border border-gray-200">
+                                        <MapContainer center={position} zoom={16} style={{ height: '100%', width: '100%', zIndex: 0 }} scrollWheelZoom={false}>
                                             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
                                             <Marker position={position}></Marker>
                                         </MapContainer>
                                     </div>
                                 ) : (
-                                    <div className="map-wrapper flex items-center justify-center bg-gray-200 text-gray-500">
+                                    <div className="h-72 w-full rounded-lg overflow-hidden border border-gray-200 flex items-center justify-center bg-gray-200 text-gray-500">
                                         Lokasi tidak tersedia
                                     </div>
                                 )}
                             </div>
                              <div>
-                                <h3 className="info-label mb-2">Foto Rumah</h3>
+                                <h3 className="text-sm font-semibold text-gray-500 mb-2">Foto Rumah</h3>
                                 <img 
                                     src={pelanggan.foto_rumah_url} 
                                     alt="Foto Rumah Pelanggan" 
-                                    className="photo-wrapper"
+                                    className="w-full h-auto max-h-96 object-cover rounded-lg border border-gray-200"
                                     onError={(e) => { e.target.onerror = null; e.target.src='/image-break.png'; }}
                                 />
                             </div>
                         </div>
                     </div>
-                    <Link to={`/daftar-pelanggan/edit-pelanggan/${pelanggan.id}`} className="edit-button">
+                    <Link to={`/daftar-pelanggan/edit-pelanggan/${pelanggan.id}`} className="block w-full mt-6 py-3.5 px-4 text-center font-bold text-gray-700 bg-amber-500 hover:bg-amber-600 rounded-lg transition-colors duration-200">
                         Edit Pelanggan
                     </Link>
                 </div>

@@ -149,7 +149,7 @@ const EditForm = () => {
     return (
         <div className="bg-gray-200 pt-24 px-8 sm:px-16">
             <Navbar />
-            <div className="bg-white p-8 rounded-lg shadow-md">
+            <div className="bg-white mt-24 p-8 rounded-lg shadow-md">
                 <h1 className="text-2xl font-bold mb-6">Edit Data Pelanggan</h1>
                 {loading && !formData.id_pelanggan ? <p>Memuat data...</p> : (
                     <form onSubmit={handleUpdate} className="flex flex-col justify-center w-full">

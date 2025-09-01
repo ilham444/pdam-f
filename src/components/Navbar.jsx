@@ -57,7 +57,6 @@ const Navbar = () => {
         { name: "Peta", path: "/peta" },
         { name: "Input", path: "/input-data" },
         { name: "Pelanggan", path: "/daftar-pelanggan" },
-        { name: "Analitik", path: "/analitik" },
     ];
 
     // Jika user role admin → tambahkan menu khusus

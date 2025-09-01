@@ -12,7 +12,6 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    // useEffect Anda sudah benar
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
@@ -24,10 +23,6 @@ const Login = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            // --- INI BAGIAN YANG DIPERBAIKI ---
-            // Kita kirim satu objek data yang berisi 'email' dan 'password'.
-            // Nilai 'email' diambil dari state 'identifier'.
-            // Nilai 'password' diambil dari state 'password'.
             const response = await api.post('/auth/login', {
                 email: identifier,
                 password: password
@@ -59,18 +54,18 @@ const Login = () => {
     return (
         <div className="min-h-screen p-8 bg-linear-to-r from-gray-200 to-blue-300/70">
             <img src="./logo.png" alt="" className='w-20 h-20' />
-            <div className="w-full sm:w-3/4 lg:w-1/2 drop-shadow-lg mx-auto bg-white/50 rounded-4xl px-10 py-20 flex items-center justify-center">
+            <div className="w-full sm:w-3/4 lg:w-1/2 drop-shadow-lg mx-auto max-h-fit bg-white/50 rounded-4xl px-10 py-20 flex items-center justify-center">
                 <div className="w-full">
                     <h1 className='font-semibold text-2xl text-center'>Sign In</h1>
                     <h5 className="text-gray-500 text-center">Masuk untuk melanjutkan</h5>
                     <div className="border border-gray-300 my-8 w-3/4 mx-auto"></div>
                     <form onSubmit={handleLogin} className="w-3/4 mx-auto">
-                        <h1 className="">Email / Username</h1>
+                        <h1 className="">Email</h1>
                         <input
                             type="text"
                             value={identifier}
                             onChange={(e) => setIdentifier(e.target.value)}
-                            placeholder='email@example.com / username'
+                            placeholder='email@example.com'
                             className='py-2 px-4 border rounded-2xl bg-gray-50 w-full border-gray-400 shadow-md mb-8'
                             required
                         />

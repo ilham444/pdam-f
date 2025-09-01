@@ -61,12 +61,12 @@ const Dashboard = () => {
                 {/* --- Peta dan Daftar Pelanggan --- */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {/* Kolom Peta (tidak berubah) */}
-                    <div className="lg:col-span-2 w-full h-[60vh] rounded-xl bg-white shadow-lg border border-gray-200">
+                    <div className="lg:col-span-2 w-full max-h-fit rounded-xl bg-white shadow-lg border border-gray-200">
                         <HeatmapComponent />
                     </div>
 
                     {/* --- BAGIAN YANG DIPERBAIKI --- */}
-                    <div className="w-full rounded-xl bg-white shadow-lg p-6 flex flex-col">
+                    <div className="w-full rounded-xl bg-white shadow-lg p-6 flex flex-col max-h-fit">
                         <h2 className="font-bold text-xl mb-4 text-gray-800">Pelanggan Terbaru</h2>
                         <div className="flex-grow overflow-y-auto -mr-4 pr-4"> 
                             {loading ? (
